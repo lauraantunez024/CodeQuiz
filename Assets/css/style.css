@@ -1,0 +1,18 @@
+
+
+#time-keeper {
+    text-align: right;
+    margin: 20px 20px;
+}
+
+#GameOver {
+    font: 24px;
+    color: red;
+    font-weight: bold;
+    margin-top: 15px;
+
+}
+
+#play-again {
+    background-color:blue;
+}

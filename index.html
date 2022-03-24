@@ -10,23 +10,29 @@
     <script src="./Assets/js/script.js"></script>
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <div id=GameOver" style="display:none">
-        Game Over!
-    </div>
-    <div id="Win" style="display:none">
-        You win! You are a keyblade master.
-    </div>
 
 
 
 
 </head>
 <body>
+    <section id="time-keeper">
+
+    <div id="GameOver" style="display:none">
+        Game Over!
+    </div>
+    <div id="Win" style="display:none">
+        You win! You are a keyblade master.
+    </div>
 
     <p>You have: <span id="timer">0</span> seconds remaining!</p>
 
     
-    <button type="button" class="btn btn-success" id="playAgainButton" onclick="start()">Go!</button>
+    <button type="button" class="btn btn-success" id="start" onclick="start()">Start</button>
+    <button type="button" class="btn btn-success" id="play-again" style="display:none" onclick="start()">Play Again?</button>
+
+
+    </section>
     
 </body>
 </html>
