@@ -1,17 +1,142 @@
+// Questions/ Answers
+
+let questions = [
+    {
+    numb: 1,
+    question: "On what platform did the original Kingdom Hearts game come out on?",
+    answer: "PlayStation",
+    options: [
+      "GameBoy",
+      "PlayStation",
+      "Super Nintendo",
+      "Nintendo 64"
+    ]
+  },
+    {
+    numb: 2,
+    question: "What video game company made Kingdom Hearts?",
+    answer: "Square Enix",
+    options: [
+      "Sega",
+      "Bandai/Namco",
+      "Konami",
+      "Square Enix"
+    ]
+  },
+    {
+    numb: 3,
+    question: "Who is Sora's nobody?",
+    answer: "Roxas",
+    options: [
+      "Roxas",
+      "Riku",
+      "Kairi",
+      "Xehanort"
+    ]
+  },
+    {
+    numb: 4,
+    question: "What does Riku want to name the boat in the first game?",
+    answer: "High Wind",
+    options: [
+      "Stylish Question Language",
+      "Stylesheet Query Language",
+      "High Wind",
+      "Structured Query Language"
+    ]
+  },
+    {
+    numb: 5,
+    question: "In what world does Sora meet Donald and Goofy the first time?",
+    answer: "Traverse Town",
+    options: [
+      "Twilight Town",
+      "Hollow Bastion",
+      "Castle Oblivion",
+      "Land of Departures"
+    ]
+  },
+  // you can uncomment the below codes and make duplicate as more as you want to add question
+  // but remember you need to give the numb value serialize like 1,2,3,5,6,7,8,9.....
+
+    {
+    numb: 6,
+    question: "Who is 'the king?'",
+    answer: "Mickey",
+    options: [
+      "Mickey",
+      "Sora",
+      "Xemnas",
+      "Pete"
+    ]
+  },
+
+  {
+    numb: 7,
+    question: "What is Hollow Bastion's original name?",
+    answer: "Radian Garden",
+    options: [
+      "Pride Lands",
+      "Deep Jungle",
+      "Disney Springs",
+      "Magic Kingdom"
+    ]
+  },
+
+  {
+    numb: 8,
+    question: "Who turns into a heartless in the first game?",
+    answer: "Sora",
+    options: [
+      "Riku",
+      "Kairi",
+      "Sora",
+      "Goofy"
+    ]
+  },
+
+  {
+    numb: 9,
+    question: "On what platform did the second game, Chain of Memories, come out?",
+    answer: "Game Boy",
+    options: [
+      "Nintendo DS",
+      "Play Station",
+      "Game Boy",
+      "Sega Dreamcast"
+    ]
+  },
+
+  {
+    numb: 10,
+    question: "Who is the main villain in Kingdom Hearts?",
+    answer: "Xehanort",
+    options: [
+      "Xigbar",
+      "Xemnas",
+      "Axel",
+      "Xehanort"
+    ]
+  },
+];
+
+
+
+
+
 var timer; 
-var timeLeft = 2; // seconds
+var timeLeft = 3; // seconds
 
 
-// What to do when the timer runs out
+// When the timer runs, replace timer and information with game over 
 function gameOver() {
     $('#GameOver').show();
     $('#play-again').show();
     $('#countdown').hide();
+    $('.info_box').hide();
     $('#youlost').show();
 
 }
-
-
 
 function youWin() {
 
@@ -24,6 +149,12 @@ function updateTimer() {
     $('#timer').html(timeLeft);
   else {
       gameOver();
+
+        // Play again button reloads page
+    document.querySelector('#play-again').addEventListener('click', function(){
+    window.location.reload();
+    return false;
+  });
 
     ;
   }
@@ -45,12 +176,12 @@ function start() {
 
 
 }
-$('#play-again').on("click", function() {
-    $('#GameOver').hide();
-    $('#play-again').hide();
-    $('#countdown').show();
-    $('#youlost').hide();
-    start(); }
+
+
+
+
+
+
 
 
 

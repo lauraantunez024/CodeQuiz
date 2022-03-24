@@ -1,12 +1,13 @@
 
 
 #time-keeper {
-    text-align: right;
+    text-align: center;
     margin: 20px 20px;
 }
 
 #GameOver {
-    font: 24px;
+    font-size: 50px;
+
     color: red;
     font-weight: bold;
     margin-top: 15px;
@@ -16,3 +17,29 @@
 #play-again {
     background-color:blue;
 }
+
+
+
+.card {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 10px;
+    flex: 0 0 400px;
+  }
+  
+  .card header {
+    padding: 20px;
+  }
+  
+  .card p {
+    text-align: center;
+  }
+  
+  .card img {
+    width: 100%;
+  }
+
+  .info_box {
+      text-align: start;
+  }

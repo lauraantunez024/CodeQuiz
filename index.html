@@ -16,7 +16,11 @@
 
 </head>
 <body>
-    <section id="time-keeper">
+    <section class="card">
+
+        
+    <header id="time-keeper">
+    
 
     <div id="GameOver" style="display:none">
         Game Over!
@@ -24,13 +28,29 @@
     <div id="Win" style="display:none">
         You win! You are a keyblade master.
     </div>
+    <div class="info_box">
+        <div class="info-title"><span>Want to test your Kingdom Hearts knowledge?</span></div>
+        <div class="info-list">
+            <div class="info"></div>
+            <br>
+            <div class="info">Quiz rules</div>
+            <div class="info">1. You have 60 seconds to complete this quiz. </div>
+            <div class="info">2. Correct answers will give you two points. </div>
+            <div class="info">3. For every wrong answer, 5 seconds will be deducted from the clock.</div>
+            <div class="info">4. All choices are final.</div>
+
+        </div>
+
+        </div>
 
     <p id="countdown">You have: <span id="timer">0</span> seconds remaining!</p>
     <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
 
+
     
     <button type="button" class="btn btn-success" id="start" onclick="start()">Start</button>
-    <button type="button" class="btn btn-success" id="play-again" style="display:none">Play Again?</button>
+    <button type="button" class="btn btn-success" id="play-again" style="display:none" onclick="start()">Play Again?</button>
+</header>
 
 
     </section>
