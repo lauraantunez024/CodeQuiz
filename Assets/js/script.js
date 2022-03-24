@@ -1,6 +1,20 @@
 // Questions/ Answers
 
-let questions = [
+
+// var questions = [
+//     "On what platform did the original Kingdom Hearts game come out on?",
+//     "What video game company made Kingdom Hearts?",
+//     "Who is Sora's nobody?",
+//     "What does Riku want to name the boat in the first game?",
+//     "In what world does Sora meet Donald and Goofy the first time?",
+//     "Who is 'the king?'",
+//     "What is Hollow Bastion's original name?",
+//     "Who turns into a heartless in the first game?",
+//     "On what platform did the second game, Chain of Memories, come out?",
+//     "Who is the main villain in Kingdom Hearts?"
+// ]
+
+let data = [
     {
     numb: 1,
     question: "On what platform did the original Kingdom Hearts game come out on?",
@@ -120,6 +134,20 @@ let questions = [
   },
 ];
 
+var userAns = answer.textContent; //getting user selected option
+var correctAns = questions[que_count].answer;
+
+
+function playing() {
+    if (userAns === correctAns {
+        /// Add 2 point to scores, show dialogue that it is correct
+        console.log()
+    } else { 
+        /// Deduct time, show dialogue that answer was incorrect
+    }
+    
+}
+
 
 
 
@@ -169,11 +197,12 @@ function start() {
   // It will be a whole second before the time changes, so we'll call the update
   // once ourselves
   updateTimer();
+
+  
   
   // We don't want the to be able to restart the timer while it is running,
   // so hide the button.
    $('#start').hide()
-
 
 }
 

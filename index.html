@@ -16,41 +16,97 @@
 
 </head>
 <body>
-    <section class="card">
+    <header id="time-keeper">
+        <div id="high-score">High Scores</div>
+
+
+        <div id="GameOver" style="display:none">
+            Game Over!
+        </div>
+        <div id="Win" style="display:none">
+            You win! You are a keyblade master.
+        </div>
+        <div class="info_box">
+            <div class="info-title"><h2>Want to test your Kingdom Hearts knowledge?</h2></div>
+            <div class="info-list">
+                <div class="info"></div>
+                <br>
+                <div class="info">Quiz rules</div>
+                <div class="info">1. You have 60 seconds to complete this quiz. </div>
+                <div class="info">2. Correct answers will give you two points. </div>
+                <div class="info">3. For every wrong answer, 5 seconds will be deducted from the clock.</div>
+                <div class="info">4. All choices are final.</div>
+    
+            </div>
+    
+            </div>
+    
+        <p id="countdown">You have: <span id="timer">0</span> seconds remaining!</p>
+        <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
+    
+    
+        
+        <button type="button" class="btn btn-success" id="start" onclick="start()">Start</button>
+        <button type="button" class="btn btn-success" id="play-again" style="display:none" onclick="start()">Play Again?</button>
+    </header>
+
+
+   
+    <section class="card" id="question">
+        
+       <!-- Question time, yay -->
+
+        <div">Question</div>
+            <div class="ans" id="a">A.  </div>
+            <div class="ans" id="b">B. </div>
+            <div class="ans" id="c">C.  </div>
+            <div class="ans" id="d">D.  </div>
+
+        </section>
+
+
+        <!-- Right Answer! -->
+        
+
+
+        <!-- Wrong Answer! -->
+
+
+        <!-- High Scores -->
+
+    <section class="card" style="display:none">
+        <div class="save" >
+            <h3>Save your High Score!</h3>
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-success" type="button">Enter name</button>
+            </div>
+            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+    </section>
+
+
+
+          
+          
+
+
+   
+
+
+                  
+       
 
         
-    <header id="time-keeper">
+  
+
+<footer>
     
-
-    <div id="GameOver" style="display:none">
-        Game Over!
-    </div>
-    <div id="Win" style="display:none">
-        You win! You are a keyblade master.
-    </div>
-    <div class="info_box">
-        <div class="info-title"><span>Want to test your Kingdom Hearts knowledge?</span></div>
-        <div class="info-list">
-            <div class="info"></div>
-            <br>
-            <div class="info">Quiz rules</div>
-            <div class="info">1. You have 60 seconds to complete this quiz. </div>
-            <div class="info">2. Correct answers will give you two points. </div>
-            <div class="info">3. For every wrong answer, 5 seconds will be deducted from the clock.</div>
-            <div class="info">4. All choices are final.</div>
-
-        </div>
-
-        </div>
-
-    <p id="countdown">You have: <span id="timer">0</span> seconds remaining!</p>
-    <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
+</footer>
 
 
-    
-    <button type="button" class="btn btn-success" id="start" onclick="start()">Start</button>
-    <button type="button" class="btn btn-success" id="play-again" style="display:none" onclick="start()">Play Again?</button>
-</header>
 
 
     </section>
