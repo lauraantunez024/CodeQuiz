@@ -25,11 +25,12 @@
         You win! You are a keyblade master.
     </div>
 
-    <p>You have: <span id="timer">0</span> seconds remaining!</p>
+    <p id="countdown">You have: <span id="timer">0</span> seconds remaining!</p>
+    <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
 
     
     <button type="button" class="btn btn-success" id="start" onclick="start()">Start</button>
-    <button type="button" class="btn btn-success" id="play-again" style="display:none" onclick="start()">Play Again?</button>
+    <button type="button" class="btn btn-success" id="play-again" style="display:none">Play Again?</button>
 
 
     </section>

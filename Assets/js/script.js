@@ -1,25 +1,15 @@
 var timer; 
-var timeLeft = 5; // seconds
+var timeLeft = 2; // seconds
+
 
 // What to do when the timer runs out
 function gameOver() {
-  // This cancels the setInterval, so the updateTimer stops getting called
-
-
     $('#GameOver').show();
-
-  
-  // re-show the button, so they can start it again
-    $('#start').show();
-
-
+    $('#play-again').show();
+    $('#countdown').hide();
+    $('#youlost').show();
 
 }
-
-// function youLose() {
-// var T = document.getElementById('GameOver');
-//   T.style.display = "block";  
-// }
 
 
 
@@ -27,12 +17,14 @@ function youWin() {
 
 }
 
+
 function updateTimer() {
   timeLeft = timeLeft - 1;
   if(timeLeft >= 0)
     $('#timer').html(timeLeft);
   else {
-    $('#play-again').show();
+      gameOver();
+
     ;
   }
 }
@@ -49,5 +41,17 @@ function start() {
   
   // We don't want the to be able to restart the timer while it is running,
   // so hide the button.
-   $('#start').hide();
+   $('#start').hide()
+
+
 }
+$('#play-again').on("click", function() {
+    $('#GameOver').hide();
+    $('#play-again').hide();
+    $('#countdown').show();
+    $('#youlost').hide();
+    start(); }
+
+
+
+
