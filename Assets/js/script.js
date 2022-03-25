@@ -1,3 +1,17 @@
+startBtn = document.querySelector('#start')
+playAgainBtn = document.querySelector('#play-again')
+gameOverScrn = document.querySelector('#GameOver')
+countdown = document.querySelector('#countdown')
+info_box = document.querySelector('.info_box')
+youLost = document.querySelector('#youlost')
+
+
+
+
+
+
+
+
 // Questions/ Answers
 
 
@@ -14,7 +28,7 @@
 //     "Who is the main villain in Kingdom Hearts?"
 // ]
 
-let data = [
+let questions = [
     {
     numb: 1,
     question: "On what platform did the original Kingdom Hearts game come out on?",
@@ -134,19 +148,19 @@ let data = [
   },
 ];
 
-var userAns = answer.textContent; //getting user selected option
-var correctAns = questions[que_count].answer;
+// var userAns = answer.textContent; //getting user selected option
+// var correctAns = questions[que_count].answer;
 
 
-function playing() {
-    if (userAns === correctAns {
-        /// Add 2 point to scores, show dialogue that it is correct
-        console.log()
-    } else { 
-        /// Deduct time, show dialogue that answer was incorrect
-    }
+// function playing() {
+//     if (userAns === correctAns {
+//         /// Add 2 point to scores, show dialogue that it is correct
+//         console.log()
+//     } else { 
+//         /// Deduct time, show dialogue that answer was incorrect
+//     }
     
-}
+// }
 
 
 
@@ -157,14 +171,16 @@ var timeLeft = 3; // seconds
 
 
 // When the timer runs, replace timer and information with game over 
-function gameOver() {
-    $('#GameOver').show();
-    $('#play-again').show();
-    $('#countdown').hide();
-    $('.info_box').hide();
-    $('#youlost').show();
+function gameOver() {   
+    gameOverScrn.style.display='block';
+    playAgainBtn.style.display='block';
+    countdown.style.display='none';
+    info_box.style.display='none';
+    youLost.style.display='block';
+
 
 }
+
 
 function youWin() {
 
@@ -173,9 +189,9 @@ function youWin() {
 
 function updateTimer() {
   timeLeft = timeLeft - 1;
-  if(timeLeft >= 0)
-    $('#timer').html(timeLeft);
-  else {
+  if(timeLeft >= 0) {
+     countdown.innerHTML = timeLeft;
+  } else {
       gameOver();
 
         // Play again button reloads page
@@ -192,17 +208,23 @@ function updateTimer() {
 function start() {
   // setInterval is a built-in function that will call the given function
   // every N milliseconds (1 second = 1000 ms)
-  timer = setInterval(updateTimer, 1000);
+    startBtn.addEventListener("click", function() {
+    timer = setInterval(updateTimer, 1000);
   
-  // It will be a whole second before the time changes, so we'll call the update
-  // once ourselves
-  updateTimer();
+    // It will be a whole second before the time changes, so we'll call the update
+    // once ourselves
+    updateTimer();
 
-  
-  
-  // We don't want the to be able to restart the timer while it is running,
-  // so hide the button.
-   $('#start').hide()
+    
+    // We don't want the to be able to restart the timer while it is running,
+    // so hide the button.
+      startBtn.style.display='none';
+
+
+
+  })
+
+
 
 }
 

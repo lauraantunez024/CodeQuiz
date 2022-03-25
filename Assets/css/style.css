@@ -25,11 +25,6 @@
 
 }
 
-.btn {
-    background-color:#8ebc4f;
-
-}
-
 
 
 
@@ -41,6 +36,28 @@
     text-align: center;
     font-weight: bold;
     font-size: 20px;
+}
+
+button {
+    background-color: #8ebc4f; 
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+button:hover, button#start:hover {
+    background-color: #c3e297;
+    color:black
+
+}
+
+#high-score {
+    margin-top: 20px;
+    text-align: right;
 }
 
 
@@ -73,3 +90,26 @@
       background-color: #185fad;
       color: #f8c169;
   }
+
+.info-title {
+    font-size: 24px;
+    font-family:Arial, Helvetica, sans-serif
+
+}
+
+.info {
+    font-size: 18px;
+    margin-left: 25px;
+    padding: 3px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.info-list {
+    border: #f8c169 solid 3px;
+    margin: auto;
+    width: 400px;
+    height: auto;
+    padding-bottom: 10px;
+
+}
