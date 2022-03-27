@@ -1,30 +1,35 @@
 
 
-#time-keeper {
-    text-align: center;
-    margin: 20px 20px;
-}
 
 #start {
     background-color: #8ebc4f;
+    margin-top: 20px;
     
 }
 
-.btn#start {
-    height: 40px;
-    width: 60px;
-    font-size: 14px;
-}
+
 
 #GameOver {
     font-size: 50px;
-
     color: 	#e15239;
     font-weight: bold;
     margin-top: 15px;
 
 }
 
+
+span {
+    display: block;
+}
+
+
+#question button {
+   padding: 5px 10px;
+   font-size: 14px;
+   margin-top: 25px;
+
+    
+}
 
 
 
@@ -45,9 +50,12 @@ button {
     border-radius: 8px;
     text-align: center;
     display: inline-block;
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 18px;    
+    margin: auto;
+    margin-bottom: 20px;
   }
+
+
 
 button:hover, button#start:hover {
     background-color: #c3e297;
@@ -65,19 +73,35 @@ button:hover, button#start:hover {
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
-    padding: 10px;
-    flex: 0 0 400px;
-  }
-  
-  .card header {
     padding: 20px;
+    background-color: #185fad;
+    color: #f8c169;
+    text-align: center;
+    flex: 0 0 400px;
+    margin-top: 80px;
+    width: 800px;
+    height: auto;
+    margin:auto;
+    margin-top: 80px;
+    border: #185fad 5px solid;
   }
+
+  .game-details#score {
+      text-align: left;
+  }
+
+  .game-details#ques {
+      text-align: right;
+  }
+
   
-  .card p {
+  
+
+.card p {
     text-align: center;
   }
   
-  .card img {
+.card img {
     width: 100%;
   }
 
@@ -89,12 +113,20 @@ button:hover, button#start:hover {
   header {
       background-color: #185fad;
       color: #f8c169;
+      text-align: center;
+      margin: 20px 20px;
   }
 
 .info-title {
     font-size: 24px;
-    font-family:Arial, Helvetica, sans-serif
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+    margin-bottom: 15px;
 
+}
+
+p#score {
+    text-align: right;
 }
 
 .info {
@@ -106,10 +138,9 @@ button:hover, button#start:hover {
 }
 
 .info-list {
-    border: #f8c169 solid 3px;
     margin: auto;
     width: 400px;
     height: auto;
-    padding-bottom: 10px;
+    padding: 10px;
 
 }
