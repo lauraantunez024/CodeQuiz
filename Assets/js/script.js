@@ -1,8 +1,7 @@
 // Questions/ Answers
 var currentQ = 0;
 var score = 0;
-
-
+var timeLeft = 30;
 
 let quiz = [
     {
@@ -120,7 +119,10 @@ var clock = document.querySelector("#countdown")
 var info_box = document.querySelector(".info_box");
 var youLost = document.querySelector("#youlost");
 var timerEl = document.querySelector("#timer");
-var youWin = document.querySelector("#youWin");
+var youWin = document.querySelector("#you-win");
+var youWon = document.querySelector("#youwon")
+var rightAns = document.querySelector("#right-answercontainer");
+var wrongAns = document.querySelector("#wrong-answercontainer")
   
 // Question screen 
 
@@ -152,6 +154,8 @@ function gameOver() {
     startBtn.style.display="none";  
     questionScreen.style.display="none";
     firstScreen.style.display="block";
+    wrongAns.style.display="none";
+    rightAns.style.display="none";
     gameOverScrn.style.display="block";
 
   
@@ -167,7 +171,6 @@ document.querySelector('#play-again').addEventListener('click', function(){
   // }
   
 function countdownTimer() {
-      var timeLeft = 5;
 
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     setInterval(function () {
@@ -181,7 +184,7 @@ function countdownTimer() {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft;
         timeLeft--;
-    } else {
+    } else if (timeLeft === 0) {
         // Once `timeLeft` gets to 0, set `timerEl` to an empty string
         gameOver();
         
@@ -194,81 +197,75 @@ function countdownTimer() {
   }
   
 function readySet() {
-    countdownTimer();
     firstScreen.style.display="none";
     questionScreen.style.display="block";
     startQuiz();
 };
 
 function startQuiz() {
+    
     currentQ = 0;
     questionText.innerHTML = quiz[currentQ].question;
     aBtn.innerHTML = quiz[currentQ].answers[0].option;
     aBtn.addEventListener("click", function() {
         let a = 0;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
+            rightAnswer();
         }
+        else if (!quiz[currentQ].answers[a].answer) {
+            wrongAnswer();           
+        }
+    
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     }) 
-
-
     bBtn.innerHTML = quiz[currentQ].answers[1].option;
     bBtn.addEventListener("click", function() {
         let a = 1;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
+            rightAnswer();
         }
+        else   {
+            wrongAnswer();         
+        
+    }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     })
     cBtn.innerHTML = quiz[currentQ].answers[2].option;
     cBtn.addEventListener("click", function() {
         let a = 2;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
+            rightAnswer();
+         } else   {
+                wrongAnswer();         
+            
         }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     })
     dBtn.innerHTML = quiz[currentQ].answers[3].option;
     dBtn.addEventListener("click", function() {
         let a = 3;
-        if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
-        }
+       if (quiz[currentQ].answers[a].answer) {
+            rightAnswer();
+    }
+    else   {
+        wrongAnswer();         
+    
+}
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ <9 ){
             next();
-        }
-        else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
+       
+        
     })
 
 
@@ -277,17 +274,16 @@ function startQuiz() {
 
 
 function starting() {
-    countdownTimer();
     firstScreen.style.display="none";
     questionScreen.style.display="block";
     startQuiz();
-  
       
   }
   
   
   
   startBtn.addEventListener("click", function() {
+    countdownTimer();
     starting();
    
   }
@@ -305,71 +301,90 @@ function next() {
     aBtn.addEventListener("click", function() {
         let a = 10;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
-        }
+            rightAnswer();
+        } else   {
+            wrongAnswer();         
+        
+    }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     })
-
-
     bBtn.innerHTML = quiz[currentQ].answers[1].option;
     bBtn.addEventListener("click", function() {
         let a = 10;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
-        }
+            rightAnswer();
+        } else {
+            wrongAnswer();         
+        
+    }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-
-        }
+        } 
     })
     cBtn.innerHTML = quiz[currentQ].answers[2].option;
     cBtn.addEventListener("click", function() {
         let a = 10;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
-        }
+                rightAnswer();
+            
+        } else {
+            wrongAnswer();         
+        
+    }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     })
     dBtn.innerHTML = quiz[currentQ].answers[3].option;
     dBtn.addEventListener("click", function() {
         let a = 10;
         if (quiz[currentQ].answers[a].answer) {
-            if (score<10) {
-                score++;
-            }
-        }
+            rightAnswer();
+            
+        } else {
+            wrongAnswer();         
+        
+    }
         userScore.innerHTML = score;
-        if(currentQ<10){
+        if(currentQ<9){
             next();
-        } else if (currentQ >= 10 && score >= 7) {
-            youWin.style.display="block";
-            firstScreen.style.display="none";
-        }
+        } 
     })
 
 }
 
-startQuiz();
+
+function rightAnswer() {
+    wrongAns.style.display="none";
+    score++;
+    rightAns.style.display="block";
+
+}
+
+function wrongAnswer() {
+    rightAns.style.display="none";
+    timeLeft = timeLeft-5;
+    wrongAns.style.display="block";
+}
+
+function winning() {
+    playAgainBtn.style.display="block";
+    timerEl.style.display="none";
+    info_box.style.display="none";
+    youLost.style.display="block";
+    clock.style.display="none";
+    startBtn.style.display="none";  
+    questionScreen.style.display="none";
+    firstScreen.style.display="block";
+    wrongAns.style.display="none";
+    rightAns.style.display="none";
+    youLost.style.display="none";
+    youWin.style.display="block";
+    youWon.style.display="block";
+
+}
