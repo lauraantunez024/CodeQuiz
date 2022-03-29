@@ -6,6 +6,8 @@
     <title>Kingdom Hearts Quiz</title>
     <!-- Bootstrap button css -->
     <link rel="stylesheet" href="./Assets/css/style.css">
+    <link rel="shortcut icon" href="#">
+
 
 
 
@@ -16,7 +18,7 @@
 
     <!-- Initial start screen -->
 
-    <div class="card" id="first" style="display:none" >
+    <div class="card" id="first" >
         
         <button id="high-score">High Scores</button>
 
@@ -33,7 +35,7 @@
                 <div class="info"></div>
                
                 <div class="info">Quiz rules</div>
-                <div class="info">1. You have 60 seconds to complete this quiz. </div>
+                <div class="info">1. You have 30 seconds to complete this quiz. </div>
                 <div class="info">2. Correct answers will give you two points. </div>
                 <div class="info">3. For every wrong answer, 5 seconds will be deducted from the clock.</div>
                 <div class="info">4. All choices are final.</div>
@@ -50,11 +52,14 @@
     <div id="GameOver" style="display:none">
             Game Over!
         </div>
+        <div id="you-win" style="display:none">
+            You Win!
+        </div>
         
     <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
-    <div id="Win" style="display:none">
-        You win! You are a keyblade master.
-    </div>
+    <p id="youwon" style="display:none">You are a keyblade master.</p>
+
+   
         
     <button id="play-again" style="display:none">Play Again?</button>
     </header>
@@ -64,51 +69,40 @@
 <!-- Questions screen -->
 
 
-<div class = "card" id="game-quiz">
+<div class = "card" id="game-quiz" style="display:none">
 
     <header>
-        <div class="game-details">
-            <h4 id="score">Score : <span id="player-score"></span> / 10</h1>
-            <h4 id="ques"> Question : <span id="question-number"></span> / 10</h1>
-        </div>
+        <div class="score">
+            <p>Score:<span id="user-score">0</span></p>
+            <span id="total"></span>
+           </div>
+
+
         <p id="countdown">You have: <span id="timer"></span> seconds remaining.</p>
 
         
     </header>
    
 
-    <h3 class="question">
-    </h3> 
-    <div class="game-options-container">
+    <div class="main" id="question-area">
+        <h3 id="question-text">question</h3>
+        <div id="options"></div>
+        <button id="A">A</button>
+        <button id="B">B</button>
+        <button id="C">C</button>
+        <button id="D">D</button>
+        
+
+        </div>
+
+
 
        
-        <span>
-            <input type="radio" id="A" class="radio"/>
-            <label class="option" id="A-label">test</label>
-        </span>
+       
 
-
-        <span>
-            <input type="radio" id="B" class="radio"/>
-            <label class="option" id="B-label">test</label>
-        </span>
-
-
-
-        <span>
-            <input type="radio" id="C" class="radio"/>
-            <label class="option" id="C-label">test</label>
-        </span>
-
-
-        <span>
-            <input type="radio" id="D" class="radio"/>
-            <label class="option" id="D-label">test</label>
-        </span>
-
-        <div class="next">
-            <button>Next Question</button>
-        </div>
+        <!-- <div class="controls">
+            <button id="next">Onward</button>
+        </div> -->
     
 
 
@@ -126,11 +120,17 @@
 
         <!-- Right Answer! -->
 
+        <div class = "card" id="right-answercontainer" style="display:none">
+            <h3>Right answer!</h3>
+        </div>
         
         
 
 
         <!-- Wrong Answer! -->
+        <div class = "card" id="wrong-answercontainer" style="display:none">
+            <h3>Wrong answer! You lost 5 seconds.</h3>
+        </div>
 
 
         <!-- High Scores -->

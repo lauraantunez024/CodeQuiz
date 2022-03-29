@@ -1,4 +1,6 @@
-
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 
 #start {
@@ -17,6 +19,14 @@
 
 }
 
+#you-win {
+    font-size: 50px;
+    color: #8ebc4f;
+    font-weight: bold;
+    margin-top: 15px;
+
+
+}
 
 span {
     display: block;
@@ -33,9 +43,10 @@ span {
 
 
 
-#youlost, #countdown {
+#youlost, #countdown, #youwon {
     font-size: 24px;
 }
+ 
 
 .info-title {
     text-align: center;
@@ -86,14 +97,27 @@ button:hover, button#start:hover {
     border: #185fad 5px solid;
   }
 
-  .game-details#score {
-      text-align: left;
+
+h3 {
+    font-size: 24px;
+}
+
+  .main button {
+    background-color: #dba8cd; 
+    color: black;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-align: left;
+    display: block;
+    font-size: 14px;    
+    margin: auto;
+    margin-bottom: 20px;
+
   }
 
-  .game-details#ques {
-      text-align: right;
+  .selection-container .option:hover {
+      background-color: #c26dab;
   }
-
   
   
 
@@ -119,7 +143,6 @@ button:hover, button#start:hover {
 
 .info-title {
     font-size: 24px;
-    font-family:Arial, Helvetica, sans-serif;
     padding: 10px;
     margin-bottom: 15px;
 
@@ -134,7 +157,6 @@ p#score {
     margin-left: 25px;
     padding: 3px;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .info-list {
