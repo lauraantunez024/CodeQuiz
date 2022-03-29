@@ -1,10 +1,44 @@
-// Questions/ Answers
+// Global Variables
 var currentQ = 0;
 var score = 0;
 var timeLeft = 30;
 var timeStop;
 var names = [];
 var scores = [];
+
+//   Start screen with quiz information variables
+var firstScreen = document.querySelector("#first")
+var startBtn = document.querySelector("#start");
+var playAgainBtn = document.querySelector("#play-again");
+var gameOverScrn = document.querySelector("#GameOver");
+var clock = document.querySelector("#countdown")
+var info_box = document.querySelector(".info_box");
+var youLost = document.querySelector("#youlost");
+var timerEl = document.querySelector("#timer");
+var youWin = document.querySelector("#you-win");
+var youWon = document.querySelector("#youwon")
+var rightAns = document.querySelector("#right-answercontainer");
+var wrongAns = document.querySelector("#wrong-answercontainer");
+
+// Question screen variables
+var nextBtn = document.querySelector("#next");
+var aBtn = document.querySelector("#A");
+var bBtn = document.querySelector("#B");
+var cBtn = document.querySelector("#C");
+var dBtn = document.querySelector("#D");
+var userScore = document.querySelector("#user-score");
+var questionText = document.querySelector("#question-text");
+var questionScreen = document.querySelector("#game-quiz");
+
+// Saving score variables
+var enterName = document.querySelector("#entername-card");
+var nameList = document.querySelector("#scoreList");
+var nameInput = document.querySelector("#name");
+var nameForm = document.querySelector("#user-name");
+var highScore = document.querySelector("#saved-scores");
+var scoreHolder = document.querySelector("score-holder");
+
+// Quiz information
 
 let quiz = [
     {
@@ -110,43 +144,188 @@ let quiz = [
       ];
   
   
-  
-  
-  
-//   Initial screen
-var firstScreen = document.querySelector("#first")
-var startBtn = document.querySelector("#start");
-var playAgainBtn = document.querySelector("#play-again");
-var gameOverScrn = document.querySelector("#GameOver");
-var clock = document.querySelector("#countdown")
-var info_box = document.querySelector(".info_box");
-var youLost = document.querySelector("#youlost");
-var timerEl = document.querySelector("#timer");
-var youWin = document.querySelector("#you-win");
-var youWon = document.querySelector("#youwon")
-var rightAns = document.querySelector("#right-answercontainer");
-var wrongAns = document.querySelector("#wrong-answercontainer");
-hScoreBtn = document.querySelector("#high-score")
-  
-// Question screen 
 
-var nextBtn = document.querySelector("#next")
-var aBtn = document.querySelector("#A")
-var bBtn = document.querySelector("#B")
-var cBtn = document.querySelector("#C")
-var dBtn = document.querySelector("#D")
-var userScore = document.querySelector("#user-score")
-var questionText = document.querySelector("#question-text")
-var questionScreen = document.querySelector("#game-quiz")
 
-// Saving score
-var enterName = document.querySelector("#entername-card");
-var nameList = document.querySelector("#scoreList");
-var nameInput = document.querySelector("#name");
-var nameForm = document.querySelector("#user-name")
-var highScore = document.querySelector("#saved-scores")
-var scoreHolder = document.querySelector("score-holder");
+// When user presses start ....
 
+startBtn.addEventListener("click", function() {
+    countdownTimer();
+    starting();
+   
+  })
+
+
+
+// Countdown timer begins 
+
+function countdownTimer() {
+
+    timeStop = setInterval(function(){
+          timeTest()}, 1000); 
+  };
+
+
+// Function within countdown stops once the time becomes less than one,
+// once timeLeft is less than one, gaveOver function executes
+  
+function timeTest() {
+if (timeLeft > 1) {
+    // Set the `textContent` of `timerEl` to show the remaining seconds
+    timerEl.textContent = timeLeft;
+    timeLeft--;
+} else {
+    // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+    gameOver();
+
+    
+}
+}
+
+
+
+// At the same time, the initial screen is hidden, the question screen is removed from hidden and the start quiz function executes
+
+
+function starting() {
+    firstScreen.style.display="none";
+    questionScreen.style.display="block";
+    startQuiz();
+      
+  };
+
+
+// StartQuiz then populates question screen with questions, and assigns answers to different buttons.
+
+function startQuiz() {
+    
+    currentQ = 0;
+    questionText.innerHTML = quiz[currentQ].question;
+    aBtn.innerHTML = quiz[currentQ].answers[0].option;
+    aBtn.addEventListener("click", function(){populate(0)});
+
+    bBtn.innerHTML = quiz[currentQ].answers[1].option;
+    bBtn.addEventListener("click", function(){populate(1)});
+      
+    cBtn.innerHTML = quiz[currentQ].answers[2].option;
+    cBtn.addEventListener("click", function(){populate(2)});
+
+    dBtn.innerHTML = quiz[currentQ].answers[3].option;
+    dBtn.addEventListener("click", function() {populate(3)});
+
+}
+
+// Populate handles what happens when a question is either right or wrong, updates the score, and checks if user is on the last question. If they are not on the last question, next function executes upon clicking the answer, if it is on the last question, then winning screen is executed.
+
+function populate(num) {
+    let a = num;
+    if (quiz[currentQ].answers[a].answer) {
+        rightAnswer();
+}
+    else  {
+    wrongAnswer();         
+
+}
+    userScore.innerHTML = score;
+    if(currentQ <9){
+        next();
+    } else {
+        winning();
+        
+    }
+   
+}
+
+// next functions adds one to current question number, and changes all the corresponding buttons for that question.
+
+function next() {
+    currentQ++;
+    questionText.innerHTML = quiz[currentQ].question;
+    aBtn.innerHTML = quiz[currentQ].answers[0].option;
+    bBtn.innerHTML = quiz[currentQ].answers[1].option;
+    cBtn.innerHTML = quiz[currentQ].answers[2].option;
+    dBtn.innerHTML = quiz[currentQ].answers[3].option;
+
+
+}
+// Right answer shows html element that says correct answer, hides the html element that says the question is wrong (if it was previously triggered) and adds a score to the user score.
+
+function rightAnswer() {
+    wrongAns.style.display="none";
+    score++;
+    rightAns.style.display="block";
+
+}
+
+// Wrong answer shows html element that says wrong answer, hides the html element that says the question is right (if it was previously triggered) and takes away 5 seconds from the countdown timer
+
+
+function wrongAnswer() {
+    rightAns.style.display="none";
+    timeLeft = timeLeft-5;
+    wrongAns.style.display="block";
+}
+
+// If the user finishes the test in the alloted time then....
+function winning() {
+
+    // Hides and shows corresponding elements
+
+    playAgainBtn.style.display="block";
+    timerEl.style.display="none";
+    info_box.style.display="none";
+    youLost.style.display="block";
+    clock.style.display="none";
+    startBtn.style.display="none";  
+    questionScreen.style.display="none";
+    firstScreen.style.display="block";
+    wrongAns.style.display="none";
+    rightAns.style.display="none";
+    youLost.style.display="none";
+    youWin.style.display="block";
+    youWon.style.display="block";
+    // Stops timer
+    clearInterval(timeStop);
+    // Prompts user to enter their name to save their score
+    init();
+
+    // adds play again button which refreshes page
+
+    document.querySelector('#play-again').addEventListener('click', function(){
+        window.location.reload();
+        return false;})
+        
+
+
+}
+
+
+// If user runs out of time then ....
+// Both gameover and winning functions include a button to play again which refreshes the page to bring it back to the start screen.
+
+function gameOver() {
+    // Hides and shows corresponding elements
+    playAgainBtn.style.display="block";
+    timerEl.style.display="none";
+    info_box.style.display="none";
+    youLost.style.display="block";
+    clock.style.display="none";
+    startBtn.style.display="none";  
+    questionScreen.style.display="none";
+    firstScreen.style.display="block";
+    wrongAns.style.display="none";
+    rightAns.style.display="none";
+    gameOverScrn.style.display="block";
+    // prompts user to enter their name to save their score 
+    init();
+    // adds play again button which refreshes page
+    document.querySelector('#play-again').addEventListener('click', function(){
+    window.location.reload();
+    return false;
+});
+  
+  }
+  
+// Once quiz is completed, user will be prompted to save their name
 
 
 function renderName() {
@@ -170,8 +349,6 @@ function renderName() {
 }
 
 
-
-
 function init() {
     enterName.style.display="block";
     var storedNames = JSON.parse(localStorage.getItem("names"));
@@ -187,6 +364,9 @@ function init() {
 
     renderName();
 }
+
+// Stores name and scores in local storage as an array
+
 
 function storeNames() {
     localStorage.setItem("names", JSON.stringify(names));
@@ -245,169 +425,39 @@ nameList.addEventListener("click", function(event) {
   
   
   
-function gameOver() {
-    playAgainBtn.style.display="block";
-    timerEl.style.display="none";
-    info_box.style.display="none";
-    youLost.style.display="block";
-    clock.style.display="none";
-    startBtn.style.display="none";  
-    questionScreen.style.display="none";
-    firstScreen.style.display="block";
-    wrongAns.style.display="none";
-    rightAns.style.display="none";
-    gameOverScrn.style.display="block";
-    init();
 
+ 
   
-document.querySelector('#play-again').addEventListener('click', function(){
-    window.location.reload();
-    return false;
-});
-  
-  }
-  
-  // function youWin() {
-  
-  // }
-  
-function countdownTimer() {
 
-  timeStop = setInterval(function(){
-        timeTest()}, 1000); 
-};
   
  
 
 
-function startQuiz() {
-    
-    currentQ = 0;
-    questionText.innerHTML = quiz[currentQ].question;
-    aBtn.innerHTML = quiz[currentQ].answers[0].option;
-    aBtn.addEventListener("click", function(){populate(0)});
-
-    bBtn.innerHTML = quiz[currentQ].answers[1].option;
-    bBtn.addEventListener("click", function(){populate(1)});
-      
-    cBtn.innerHTML = quiz[currentQ].answers[2].option;
-    cBtn.addEventListener("click", function(){populate(2)});
-
-    dBtn.innerHTML = quiz[currentQ].answers[3].option;
-    dBtn.addEventListener("click", function() {populate(3)});
-
-}
-
-
-function populate(num) {
-    let a = num;
-    if (quiz[currentQ].answers[a].answer) {
-        rightAnswer();
-}
-    else  {
-    wrongAnswer();         
-
-}
-    userScore.innerHTML = score;
-    if(currentQ <9){
-        next();
-    } else {
-        winning();
-        
-    }
-   
-}
 
 
 
 
-function timeTest() {
-    if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = timeLeft;
-        timeLeft--;
-    } else if (timeLeft === 1) {
-        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-        timerEl.textContent = timeLeft;
-        timeLeft--;
-    } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-        gameOver();
-        
-        
-        // Use `clearInterval()` to stop the timer
-        // Call the `displayMessage()` function
-    }
-}
 
 
-function starting() {
-    highScore.style.display="none";
-    firstScreen.style.display="none";
-    questionScreen.style.display="block";
-    startQuiz();
-      
-  };
+
+
+
+
+
+
 
 
 
   
   
   
-startBtn.addEventListener("click", function() {
-    countdownTimer();
-    starting();
-   
-  })
 
 
 
-function next() {
-    currentQ++;
-    questionText.innerHTML = quiz[currentQ].question;
-    aBtn.innerHTML = quiz[currentQ].answers[0].option;
-    bBtn.innerHTML = quiz[currentQ].answers[1].option;
-    cBtn.innerHTML = quiz[currentQ].answers[2].option;
-    dBtn.innerHTML = quiz[currentQ].answers[3].option;
 
 
-}
 
 
-function rightAnswer() {
-    wrongAns.style.display="none";
-    score++;
-    rightAns.style.display="block";
-
-}
-
-function wrongAnswer() {
-    rightAns.style.display="none";
-    timeLeft = timeLeft-5;
-    wrongAns.style.display="block";
-}
-
-function winning() {
-
-    playAgainBtn.style.display="block";
-    timerEl.style.display="none";
-    info_box.style.display="none";
-    youLost.style.display="block";
-    clock.style.display="none";
-    startBtn.style.display="none";  
-    questionScreen.style.display="none";
-    firstScreen.style.display="block";
-    wrongAns.style.display="none";
-    rightAns.style.display="none";
-    youLost.style.display="none";
-    youWin.style.display="block";
-    youWon.style.display="block";
-    clearInterval(timeStop);
-    init();
-    document.querySelector('#play-again').addEventListener('click', function(){
-        window.location.reload();
-        return false;})
-        
 
 
-}
+
