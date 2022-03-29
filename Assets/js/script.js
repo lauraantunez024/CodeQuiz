@@ -184,7 +184,7 @@ function countdownTimer() {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft;
         timeLeft--;
-    } else if (timeLeft === 0) {
+    } else {
         // Once `timeLeft` gets to 0, set `timerEl` to an empty string
         gameOver();
         
@@ -373,6 +373,7 @@ function wrongAnswer() {
 }
 
 function winning() {
+
     playAgainBtn.style.display="block";
     timerEl.style.display="none";
     info_box.style.display="none";
