@@ -2,6 +2,7 @@
 var currentQ = 0;
 var score = 0;
 var timeLeft = 30;
+var timeStop;
 
 let quiz = [
     {
@@ -172,13 +173,58 @@ document.querySelector('#play-again').addEventListener('click', function(){
   
 function countdownTimer() {
 
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    setInterval(function () {
-    // As long as the `timeLeft` is greater than 1
+  timeStop = setInterval(function(){
+        timeTest()}, 1000); 
+};
+  
+ 
+
+
+function startQuiz() {
+    
+    currentQ = 0;
+    questionText.innerHTML = quiz[currentQ].question;
+    aBtn.innerHTML = quiz[currentQ].answers[0].option;
+    aBtn.addEventListener("click", function(){populate(0)});
+
+    bBtn.innerHTML = quiz[currentQ].answers[1].option;
+    bBtn.addEventListener("click", function(){populate(1)});
+      
+    cBtn.innerHTML = quiz[currentQ].answers[2].option;
+    cBtn.addEventListener("click", function(){populate(2)});
+
+    dBtn.innerHTML = quiz[currentQ].answers[3].option;
+    dBtn.addEventListener("click", function() {populate(3)});
+
+}
+
+
+function populate(num) {
+    let a = num;
+    if (quiz[currentQ].answers[a].answer) {
+        rightAnswer();
+}
+    else  {
+    wrongAnswer();         
+
+}
+    userScore.innerHTML = score;
+    if(currentQ <9 ){
+        next();
+    } else {
+        winning();
+        
+    }
+   
+}
+
+
+
+
+function timeTest() {
     if (timeLeft > 1) {
         // Set the `textContent` of `timerEl` to show the remaining seconds
         timerEl.textContent = timeLeft;
-        // Decrement `timeLeft` by 1
         timeLeft--;
     } else if (timeLeft === 1) {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
@@ -192,84 +238,6 @@ function countdownTimer() {
         // Use `clearInterval()` to stop the timer
         // Call the `displayMessage()` function
     }
-    }, 1000);
-  
-  }
-  
-function readySet() {
-    firstScreen.style.display="none";
-    questionScreen.style.display="block";
-    startQuiz();
-};
-
-function startQuiz() {
-    
-    currentQ = 0;
-    questionText.innerHTML = quiz[currentQ].question;
-    aBtn.innerHTML = quiz[currentQ].answers[0].option;
-    aBtn.addEventListener("click", function() {
-        let a = 0;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-        }
-        else if (!quiz[currentQ].answers[a].answer) {
-            wrongAnswer();           
-        }
-    
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    }) 
-    bBtn.innerHTML = quiz[currentQ].answers[1].option;
-    bBtn.addEventListener("click", function() {
-        let a = 1;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-        }
-        else   {
-            wrongAnswer();         
-        
-    }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
-    cBtn.innerHTML = quiz[currentQ].answers[2].option;
-    cBtn.addEventListener("click", function() {
-        let a = 2;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-         } else   {
-                wrongAnswer();         
-            
-        }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
-    dBtn.innerHTML = quiz[currentQ].answers[3].option;
-    dBtn.addEventListener("click", function() {
-        let a = 3;
-       if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-    }
-    else   {
-        wrongAnswer();         
-    
-}
-        userScore.innerHTML = score;
-        if(currentQ <9 ){
-            next();
-        } 
-       
-        
-    })
-
-
-
 }
 
 
@@ -278,83 +246,37 @@ function starting() {
     questionScreen.style.display="block";
     startQuiz();
       
-  }
+  };
   
   
   
-  startBtn.addEventListener("click", function() {
+startBtn.addEventListener("click", function() {
     countdownTimer();
     starting();
    
-  }
-  )
+  })
 
 
 
 function next() {
     currentQ++;
-    if (currentQ>=11){
-        nextBtn.style.display="none";
-    }
     questionText.innerHTML = quiz[currentQ].question;
     aBtn.innerHTML = quiz[currentQ].answers[0].option;
-    aBtn.addEventListener("click", function() {
-        let a = 10;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-        } else   {
-            wrongAnswer();         
-        
-    }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
+    // aBtn.addEventListener("click", function() {
+    // populate(0);
+    // })
+
     bBtn.innerHTML = quiz[currentQ].answers[1].option;
-    bBtn.addEventListener("click", function() {
-        let a = 10;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-        } else {
-            wrongAnswer();         
-        
-    }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
+    // bBtn.addEventListener("click", function() 
+    // {populate(1);
+    // })
     cBtn.innerHTML = quiz[currentQ].answers[2].option;
-    cBtn.addEventListener("click", function() {
-        let a = 10;
-        if (quiz[currentQ].answers[a].answer) {
-                rightAnswer();
-            
-        } else {
-            wrongAnswer();         
-        
-    }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
+    // cBtn.addEventListener("click", function(){populate(2);
+    // })
+
     dBtn.innerHTML = quiz[currentQ].answers[3].option;
-    dBtn.addEventListener("click", function() {
-        let a = 10;
-        if (quiz[currentQ].answers[a].answer) {
-            rightAnswer();
-            
-        } else {
-            wrongAnswer();         
-        
-    }
-        userScore.innerHTML = score;
-        if(currentQ<9){
-            next();
-        } 
-    })
+    // dBtn.addEventListener("click", function(){populate(3);
+    // })
 
 }
 
@@ -387,5 +309,10 @@ function winning() {
     youLost.style.display="none";
     youWin.style.display="block";
     youWon.style.display="block";
+    clearInterval(timeStop);
+    document.querySelector('#play-again').addEventListener('click', function(){
+        window.location.reload();
+        return false;})
+
 
 }
