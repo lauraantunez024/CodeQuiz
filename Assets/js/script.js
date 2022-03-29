@@ -170,14 +170,18 @@ function renderName() {
 }
 
 
+
+
 function init() {
     enterName.style.display="block";
     var storedNames = JSON.parse(localStorage.getItem("names"));
-    var storedScores = JSON.parse(localStorage.getItem("scores"))
+    var storedScores = JSON.parse(localStorage.getItem("scores"));
 
     if (storedNames !== null) {
         names = storedNames
-    } else if (storedScores !== null) {
+    }  
+    
+    if (storedScores !== null) {
         scores = storedScores
     }
 
@@ -190,7 +194,7 @@ function storeNames() {
 
 
 function storeScore() {
-    localStorage.setItem("scores", JSON.stringify(userScore.innerHTML));
+    localStorage.setItem("scores", JSON.stringify(scores));
 
 }
 
@@ -346,11 +350,7 @@ function starting() {
   };
 
 
-hScoreBtn.addEventListener("click", function() {
-    highScore.style.display="block";
 
-
-})
   
   
   
