@@ -36,7 +36,7 @@
                
                 <div class="info">Quiz rules</div>
                 <div class="info">1. You have 30 seconds to complete this quiz. </div>
-                <div class="info">2. Correct answers will give you two points. </div>
+                <div class="info">2. You get one point for every correct answer. </div>
                 <div class="info">3. For every wrong answer, 5 seconds will be deducted from the clock.</div>
                 <div class="info">4. All choices are final.</div>
     
@@ -67,6 +67,7 @@
 
 
 <!-- Questions screen -->
+
 
 
 <div class = "card" id="game-quiz" style="display:none">
@@ -100,9 +101,7 @@
        
        
 
-        <!-- <div class="controls">
-            <button id="next">Onward</button>
-        </div> -->
+  
     
 
 
@@ -135,21 +134,22 @@
 
         <!-- High Scores -->
 
-    <section class="card" style="display:none">
-        <div class="save" >
-            <h3>Save your High Score!</h3>
-        <div class="input-group">
-            <div class="input-group-prepend">
-              <button class="btn btn-success" type="button">Enter name</button>
-            </div>
-            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-          </div>
-        </div>
+        <section class = card id="entername-card" style="display:none">
+            <form id="user-name" method="POST">
+                <label for="enter-name">Save your score: </label>
+                <input type="text" placeholder="your name here" name="player-name" id="name" />
+              </form>
+        </section>
+
+    <section class="card" id="saved-scores" style="display:none">
+            <h3>Your High Scores</h3>
+            <ul id="scoreList"></ul>
+        
 
     </section>
 
 
-
+  
           
           
 
@@ -163,9 +163,6 @@
         
   
 
-<footer>
-    
-</footer>
 
 
 

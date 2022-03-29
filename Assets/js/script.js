@@ -3,6 +3,8 @@ var currentQ = 0;
 var score = 0;
 var timeLeft = 30;
 var timeStop;
+var names = [];
+var scores = [];
 
 let quiz = [
     {
@@ -123,7 +125,8 @@ var timerEl = document.querySelector("#timer");
 var youWin = document.querySelector("#you-win");
 var youWon = document.querySelector("#youwon")
 var rightAns = document.querySelector("#right-answercontainer");
-var wrongAns = document.querySelector("#wrong-answercontainer")
+var wrongAns = document.querySelector("#wrong-answercontainer");
+hScoreBtn = document.querySelector("#high-score")
   
 // Question screen 
 
@@ -136,13 +139,105 @@ var userScore = document.querySelector("#user-score")
 var questionText = document.querySelector("#question-text")
 var questionScreen = document.querySelector("#game-quiz")
 
-// Events
+// Saving score
+var enterName = document.querySelector("#entername-card");
+var nameList = document.querySelector("#scoreList");
+var nameInput = document.querySelector("#name");
+var nameForm = document.querySelector("#user-name")
+var highScore = document.querySelector("#saved-scores")
+var scoreHolder = document.querySelector("score-holder");
 
 
 
+function renderName() {
+    nameList.innerHTML="";
+    for (var i = 0; i < names.length; i++) {
+        var name = names[i];
+        var score = scores[i];
+
+        var li = document.createElement("li");
+        li.textContent= name + " Score: " + score;
+        li.setAttribute("data-index", i)
+
+        var button = document.createElement("button");
+        button.textContent = "Complete ✔️";
 
 
 
+        nameList.appendChild(li);
+    }
+
+}
+
+
+function init() {
+    enterName.style.display="block";
+    var storedNames = JSON.parse(localStorage.getItem("names"));
+    var storedScores = JSON.parse(localStorage.getItem("scores"))
+
+    if (storedNames !== null) {
+        names = storedNames
+    } else if (storedScores !== null) {
+        scores = storedScores
+    }
+
+    renderName();
+}
+
+function storeNames() {
+    localStorage.setItem("names", JSON.stringify(names));
+}
+
+
+function storeScore() {
+    localStorage.setItem("scores", JSON.stringify(userScore.innerHTML));
+
+}
+
+
+nameForm.addEventListener("submit", function(event){
+    event.preventDefault();
+    
+    var nameText = nameInput.value.trim();
+    var finalScore = userScore.innerHTML;
+
+    if (nameText === ""){
+        return;
+    } else if (finalScore ==="") {
+        return;
+    }
+
+    names.push(nameText);
+    scores.push(finalScore)
+    nameInput.value = "";
+
+
+
+    storeScore();
+    storeNames();
+    renderName();
+    highScore.style.display="block";
+
+})
+
+
+
+nameList.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // Checks if element is a button
+    if (element.matches("button") === true) {
+      // Get its data-index value and remove the todo element from the list
+      var index = element.parentElement.getAttribute("data-index");
+      names.splice(index, 1);
+      scores.splice(index, 1);
+  
+      // Store updated todos in localStorage, re-render the list
+      storeScore();
+      storeNames();
+      renderName();
+    }
+  });
   
   
   
@@ -158,6 +253,7 @@ function gameOver() {
     wrongAns.style.display="none";
     rightAns.style.display="none";
     gameOverScrn.style.display="block";
+    init();
 
   
 document.querySelector('#play-again').addEventListener('click', function(){
@@ -209,7 +305,7 @@ function populate(num) {
 
 }
     userScore.innerHTML = score;
-    if(currentQ <9 ){
+    if(currentQ <9){
         next();
     } else {
         winning();
@@ -242,11 +338,19 @@ function timeTest() {
 
 
 function starting() {
+    highScore.style.display="none";
     firstScreen.style.display="none";
     questionScreen.style.display="block";
     startQuiz();
       
   };
+
+
+hScoreBtn.addEventListener("click", function() {
+    highScore.style.display="block";
+
+
+})
   
   
   
@@ -262,21 +366,10 @@ function next() {
     currentQ++;
     questionText.innerHTML = quiz[currentQ].question;
     aBtn.innerHTML = quiz[currentQ].answers[0].option;
-    // aBtn.addEventListener("click", function() {
-    // populate(0);
-    // })
-
     bBtn.innerHTML = quiz[currentQ].answers[1].option;
-    // bBtn.addEventListener("click", function() 
-    // {populate(1);
-    // })
     cBtn.innerHTML = quiz[currentQ].answers[2].option;
-    // cBtn.addEventListener("click", function(){populate(2);
-    // })
-
     dBtn.innerHTML = quiz[currentQ].answers[3].option;
-    // dBtn.addEventListener("click", function(){populate(3);
-    // })
+
 
 }
 
@@ -310,9 +403,11 @@ function winning() {
     youWin.style.display="block";
     youWon.style.display="block";
     clearInterval(timeStop);
+    init();
     document.querySelector('#play-again').addEventListener('click', function(){
         window.location.reload();
         return false;})
+        
 
 
 }
