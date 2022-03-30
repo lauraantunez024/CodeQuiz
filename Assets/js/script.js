@@ -298,7 +298,6 @@ function winning() {
 
 }
 
-
 // If user runs out of time then ....
 // Both gameover and winning functions include a button to play again which refreshes the page to bring it back to the start screen.
 
@@ -315,6 +314,8 @@ function gameOver() {
     wrongAns.style.display="none";
     rightAns.style.display="none";
     gameOverScrn.style.display="block";
+    // Stops timer
+    clearInterval(timeStop);
     // prompts user to enter their name to save their score 
     init();
     // adds play again button which refreshes page
