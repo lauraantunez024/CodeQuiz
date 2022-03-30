@@ -87,7 +87,7 @@ let quiz = [
             {option:"Traverse Town", answer:true},
             {option:"Twilight Town", answer:false},
             {option:"Hollow Bastion", answer:false},
-            {option:"Castle", answer:false},
+            {option:"Castle Oblivion", answer:false},
     ]
         
       },
@@ -195,7 +195,7 @@ function starting() {
 
 
 // StartQuiz then populates question screen with questions, and assigns answers to different buttons.
-//Used coding ninjas as reference for the Start Quiz function, and how to format the quiz content https://www.codingninjas.com/blog/2020/11/03/how-to-create-a-quiz-in-javascript/
+// Used this as reference for populating question and formatting the quiz variable https://www.codingninjas.com/blog/2020/11/03/how-to-create-a-quiz-in-javascript/
 
 function startQuiz() {
     
@@ -455,7 +455,6 @@ nameList.addEventListener("click", function(event) {
   
   
   
-
 
 
 
