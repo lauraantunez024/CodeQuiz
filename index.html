@@ -26,8 +26,7 @@
     <header>
 
 
-    
-
+    <!-- Quiz information and start button -->
        
         <div class="info_box">
             <div class="info-title"><h2>Want to test your Kingdom Hearts knowledge?</h2></div>
@@ -47,43 +46,45 @@
 
     <button id="start">Start</button>
 
-    <!-- Winning or losing -->
-
-    <div id="GameOver" style="display:none">
+        <!-- If you lost -->
+        <div id="GameOver" style="display:none">
             Game Over!
         </div>
+
+        <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
+
+        <!-- If you won -->
+
         <div id="you-win" style="display:none">
             You Win!
         </div>
         
-    <p id="youlost" style="display:none">You ran out of time! You are a nobody.</p>
-    <p id="youwon" style="display:none">You are a keyblade master.</p>
+        <p id="youwon" style="display:none">You are a keyblade master.</p>
 
    
+    <!-- Play again button -->
         
     <button id="play-again" style="display:none">Play Again?</button>
     </header>
-</div>
+    </div>
 
 
-<!-- Questions screen -->
+    <!-- Questions screen, after start button is pressed....-->
 
+    <div class = "card" id="game-quiz" style="display:none">
 
-
-<div class = "card" id="game-quiz" style="display:none">
-
+    <!-- Score and countdown timer -->
     <header>
         <div class="score">
             <p>Score:<span id="user-score">0</span></p>
             <span id="total"></span>
            </div>
 
-
         <p id="countdown">You have: <span id="timer"></span> seconds remaining.</p>
-
         
     </header>
-   
+
+   <!-- Question and answer choices -->
 
     <div class="main" id="question-area">
         <h3 id="question-text">question</h3>
@@ -93,31 +94,12 @@
         <button id="C">C</button>
         <button id="D">D</button>
         
-
         </div>
+    </div>  
 
 
 
-       
-       
-
-  
-    
-
-
-    </div>
-
-   
-</div>
-
-
-
-   
-   
-        
-
-
-        <!-- Right Answer! -->
+        <!-- If answer is right.... -->
 
         <div class = "card" id="right-answercontainer" style="display:none">
             <h3>Right answer!</h3>
@@ -126,13 +108,12 @@
         
 
 
-        <!-- Wrong Answer! -->
+        <!-- If answer is wrong -->
         <div class = "card" id="wrong-answercontainer" style="display:none">
             <h3>Wrong answer! You lost 5 seconds.</h3>
         </div>
 
-
-        <!-- High Scores -->
+        <!-- Once quiz is over, input element to save name and score -->
 
         <section class = card id="entername-card" style="display:none">
             <form id="user-name" method="POST">
@@ -141,33 +122,16 @@
               </form>
         </section>
 
+             <!--  Showing saved scores -->
+
+
     <section class="card" id="saved-scores" style="display:none">
-            <h3>Your High Scores</h3>
+            <h3>Your Scores</h3>
             <ul id="scoreList"></ul>
         
 
     </section>
 
-
-  
-          
-          
-
-
-   
-
-
-                  
-       
-
-        
-  
-
-
-
-
-
-    </section>
 
     <script src="./Assets/js/script.js"></script>
 

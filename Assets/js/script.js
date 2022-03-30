@@ -401,6 +401,8 @@ nameForm.addEventListener("submit", function(event){
     storeNames();
     renderName();
     highScore.style.display="block";
+    enterName.style.display="none";
+
 
 })
 
