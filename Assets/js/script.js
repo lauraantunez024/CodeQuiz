@@ -1,7 +1,7 @@
 // Global Variables
 var currentQ = 0;
 var score = 0;
-var timeLeft = 30;
+var timeLeft = 60;
 var timeStop;
 var names = [];
 var scores = [];
