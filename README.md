@@ -14,7 +14,7 @@ When a user gets an answer wrong, 5 seconds is subtracted from the timer. When a
 
 
 ## Deployed Link 
-https://lauraantunez024.github.io/HW4-CodeQuiz/
+https://lauraantunez024.github.io/CodeQuiz/
 
 ## Credits
 This was created as part of an assignment for Georgia Tech Coding Bootcamp
